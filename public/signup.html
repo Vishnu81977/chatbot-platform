@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+</head>
+<body>
+
+<h2>Sign Up</h2>
+
+<form id="signupForm">
+  <input type="email" id="email" placeholder="Email" required /><br><br>
+  <input type="password" id="password" placeholder="Password" required /><br><br>
+  <button type="submit">Sign Up</button>
+</form>
+
+<p id="message"></p>
+
+<script>
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+    document.getElementById("message").innerText = data.message;
+  } catch (err) {
+    document.getElementById("message").innerText = "Error connecting to server";
+  }
+});
+</script>
+
+</body>
+</html>
