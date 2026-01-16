@@ -23,7 +23,7 @@ app.use("/api/chat", chatRoutes);
 
 // Test route
 app.get("/", (req, res) => {
-  res.send("Server running 🚀");
+  res.send("Server running ");
 });
 
 // DB connection
