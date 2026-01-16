@@ -10,12 +10,12 @@ router.post("/:projectId", auth, async (req, res) => {
     const { projectId } = req.params;
 
     if (!message) {
-      return res.status(400).json({ message: "Message required ❌" });
+      return res.status(400).json({ message: "Message required " });
     }
 
     const project = await Project.findById(projectId);
     if (!project) {
-      return res.status(404).json({ message: "Project not found ❌" });
+      return res.status(404).json({ message: "Project not found " });
     }
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -42,14 +42,14 @@ console.log("OPENROUTER RESPONSE:", JSON.stringify(data, null, 2));
 
 if (!response.ok) {
   return res.status(500).json({
-    message: "OpenRouter API error ❌",
+    message: "OpenRouter API error ",
     error: data
   });
 }
 
 if (!data.choices || !data.choices[0]) {
   return res.status(500).json({
-    message: "No AI response ❌",
+    message: "No AI response ",
     error: data
   });
 }
@@ -61,7 +61,7 @@ if (!data.choices || !data.choices[0]) {
 
   } catch (error) {
     console.error("CHAT ERROR:", error);
-    res.status(500).json({ message: "Chat failed ❌" });
+    res.status(500).json({ message: "Chat failed " });
   }
 });
 

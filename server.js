@@ -15,11 +15,11 @@ app.use(express.static("public"));
 // Routes
 const authRoutes = require("./routes/authRoutes");
 const projectRoutes = require("./routes/projectRoutes");
-const chatRoutes = require("./routes/chatRoutes"); // ✅ THIS LINE WAS MISSING
+const chatRoutes = require("./routes/chatRoutes"); 
 
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
-app.use("/api/chat", chatRoutes); // ✅ now works
+app.use("/api/chat", chatRoutes); 
 
 // Test route
 app.get("/", (req, res) => {
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 // DB connection
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected successfully ✅"))
+  .then(() => console.log("MongoDB connected successfully "))
   .catch(err => console.error(err));
 
 // Server start
